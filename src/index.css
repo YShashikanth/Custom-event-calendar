@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animated Pink-Violet Gradient Background */
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: linear-gradient(-45deg, #ffd6e8, #e0c3fc, #f9c5d1, #d4fcf9);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  color: #101010;
+  min-height: 100vh;
+}
+
+/* Header Style */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 4px rgba(12, 15, 167, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+/* Keyframes for Moving Gradient */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -1,66 +1,54 @@
-# 📅 Custom Event Calendar
+# React + TypeScript + Vite
 
-A dynamic, interactive calendar application built with **React** that allows users to manage their schedule with advanced features like recurring events, event editing, conflict management, and drag-and-drop rescheduling.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### ✅ Monthly View Calendar
-- Traditional monthly calendar layout
-- Highlight today’s date
-- Navigate between months
+## Expanding the ESLint configuration
 
-### 📝 Event Management
-- **Add Events** by clicking on a day
-- **Edit Events** with a simple form
-- **Delete Events** (single occurrence or full series)
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### 🔁 Recurring Events
-- Supports recurrence types:
-  - **Daily**
-  - **Weekly**
-  - **Monthly**
-  - **Custom** (e.g., every 2 weeks)
-- Events repeat accurately across selected days
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-### 🖱️ Drag-and-Drop Rescheduling
-- Easily reschedule events by dragging them to a new date
-- Handles edge cases like conflicts and overlapping events
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### ⚠️ Conflict Management
-- Prevent overlapping events for the same date/time
-- Displays warnings on conflicts
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-### 🔎 Optional Enhancements
-- **Search and Filter** events by category or keyword
-- **Responsive Design** for mobile and tablet support
-- Data persisted using **Local Storage** for offline support
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework:** React
-- **Date Library:** date-fns
-- **Drag and Drop:** React DnD or Interact.js
-- **State Management:** React State + Hooks
-- **Styling:** Tailwind CSS or CSS Modules
-- **Persistence:** LocalStorage
-
----
-
-## 📦 Setup Instructions
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/custom-event-calendar.git
-
-# Navigate to project folder
-cd custom-event-calendar
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm start
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
